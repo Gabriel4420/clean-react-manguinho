@@ -5,7 +5,10 @@
   "author": "Gabriel4420 <gabriel_rodrigues_perez@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn jest -- --watch",
+    "test:staged": "yarn jest -- --findRelatedTests",
+    "test:ci": "yarn test -- --coverage"
   },
   "devDependencies": {
     "@types/jest": "^28.1.5",
