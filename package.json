@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Gabriel4420 <gabriel_rodrigues_perez@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^28.1.5",
     "@types/node": "^18.0.4",
