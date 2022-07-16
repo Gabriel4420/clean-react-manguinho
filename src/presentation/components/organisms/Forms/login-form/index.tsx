@@ -1,4 +1,4 @@
-import { FormStatus, Input, Button } from '@/presentation/components'
+import { FormStatus, Input, Button, Heading } from '@/presentation/components'
 import Styles from './styles.scss'
 
 import React from 'react'
@@ -6,7 +6,7 @@ import React from 'react'
 const LoginForm: React.FC = () => {
   return (
     <form className={Styles.form} action="">
-      <h2>Login</h2>
+      <Heading type="h2" title="Login" />
 
       <Input type="email" name="email" placeholder="Digite seu email" />
 
