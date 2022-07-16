@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from './styles.scss'
+import './styles.scss'
 
 type Props = {
   className: string
@@ -9,7 +9,7 @@ type Props = {
 
 const Button: React.FC<Props> = (props: Props) => {
   return (
-    <button style={Styles.button} className={props.className} type={props.type}>
+    <button className={props.className} type={props.type}>
       {props.text}
     </button>
   )
