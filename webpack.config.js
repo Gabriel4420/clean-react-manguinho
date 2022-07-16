@@ -41,9 +41,14 @@ module.exports = {
       },
     ],
   },
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: './public',
-    writeToDisk: true,
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    static:{
+      directory: './public',
+    },
     historyApiFallback: true,
   },
   externals: {
