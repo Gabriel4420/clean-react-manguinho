@@ -1,6 +1,6 @@
-import Spinner from '@/presentation/components/spinner/spiner'
-import React from 'react'
+import Spinner from '@/presentation/components/spinner'
 import Styles from './login-styles.scss'
+import React from 'react'
 
 const Login: React.FC = () => {
   return (
