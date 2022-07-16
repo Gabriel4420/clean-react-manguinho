@@ -5,9 +5,10 @@
   "author": "Gabriel4420 <gabriel_rodrigues_perez@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --passWithNoTests",
-    "test:watch": "yarn jest -- --watch",
-    "test:staged": "yarn jest -- --findRelatedTests",
+    "start": "webpack-dev-server --open",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "yarn test -- --watch",
+    "test:staged": "yarn test -- --findRelatedTests",
     "test:ci": "yarn test -- --coverage"
   },
   "devDependencies": {
