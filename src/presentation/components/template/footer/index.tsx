@@ -1,7 +1,7 @@
 import Styles from './styles.scss'
 import React, { memo } from 'react'
 
-const FooterHeader: React.FC = () => {
+const Footer: React.FC = () => {
   return (
     <footer className={Styles.footer}>
       <span>
@@ -18,4 +18,4 @@ const FooterHeader: React.FC = () => {
   )
 }
 
-export default memo(FooterHeader)
+export default memo(Footer)

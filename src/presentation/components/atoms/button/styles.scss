@@ -1,0 +1,14 @@
+@import '../../../styles/colors.scss';
+
+button {
+  background-color: $primary;
+  color: $white;
+  line-height: 3.75rem;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+}
