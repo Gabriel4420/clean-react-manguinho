@@ -1,0 +1,26 @@
+@import '../../styles/colors.scss';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary;
+  padding: 2rem !important;
+  color: $white;
+  width: 100%;
+  font-weight: bold;
+  span {
+    display: flex;
+  }
+  font-size: 1.3rem;
+  a {
+    color: $white;
+    text-decoration: none;
+    padding-left: 0.3rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
