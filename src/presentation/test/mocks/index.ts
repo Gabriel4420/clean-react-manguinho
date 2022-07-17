@@ -1,1 +1,1 @@
-export {default as ValidationSpy} from './validation'
+export {default as ValidationStub} from './validation'
