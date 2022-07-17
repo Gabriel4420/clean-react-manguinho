@@ -1,5 +1,5 @@
 import { Header, Footer, LoginForm } from '@/presentation/components'
-import { Validation } from '@/presentation/protocols/validation'
+import { Validation } from '@/presentation/protocols'
 import React from 'react'
 import Styles from './styles.scss'
 

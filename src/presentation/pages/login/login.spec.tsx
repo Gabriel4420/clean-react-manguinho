@@ -6,7 +6,7 @@ import {
 } from '@testing-library/react'
 import { Login } from '@/presentation/pages'
 import React from 'react'
-import { Validation } from '@/presentation/protocols/validation'
+import { Validation } from '@/presentation/protocols'
 
 type SutTypes = {
   sut: RenderResult

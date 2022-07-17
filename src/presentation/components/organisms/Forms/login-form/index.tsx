@@ -1,5 +1,5 @@
 import { FormStatus, Input, Button, Heading } from '@/presentation/components'
-import { Validation } from '@/presentation/protocols/validation'
+import { Validation } from '@/presentation/protocols'
 import { FormContext } from '@/presentation/contexts'
 import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'
@@ -15,7 +15,7 @@ const LoginForm: React.FC<Props> = ({ validation }: Props) => {
     isLoading: false,
     errorMessage: '',
     email: '',
-    password:'',
+    password: '',
     emailError: 'Campo obrigatório',
     passwordError: 'Campo obrigatório',
     mainError: '',
