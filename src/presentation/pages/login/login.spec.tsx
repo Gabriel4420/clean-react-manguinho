@@ -55,7 +55,7 @@ describe('Login Component', () => {
     expect(passwordStatus.textContent).toBe('🔴')
   })
 
-  test('Should call validation with correct values ', () => {
+  test('Should call validation with correct email ', () => {
     const { sut, validationSpy } = makeSut()
 
     const emailInput = sut.getByTestId('email')
