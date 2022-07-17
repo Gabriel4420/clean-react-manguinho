@@ -3,15 +3,12 @@ import Styles from './styles.scss'
 import { FormContext } from '@/presentation/contexts'
 import React, { useState } from 'react'
 
-type StateProps = {
-  isLoading: boolean
-  errorMessage: string
-}
-
 const LoginForm: React.FC = () => {
-  const [state] = useState<StateProps>({
+  const [state] = useState({
     isLoading: false,
     errorMessage: '',
+    emailError: 'Campo obrigatório',
+    passwordError: 'Campo obrigatório',
   })
   return (
     <FormContext.Provider value={state}>
