@@ -13,6 +13,14 @@
 
   .submit {
     margin-top: 2rem;
+    &:disabled {
+      background-color: $disabledBackground;
+      color: $disabledText;
+      cursor: not-allowed;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   .link {

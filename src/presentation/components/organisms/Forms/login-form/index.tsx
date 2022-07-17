@@ -22,7 +22,12 @@ const LoginForm: React.FC = () => {
 
         <Input type="password" name="password" placeholder="Digite sua senha" />
 
-        <Button className={Styles.submit} type="submit" text="Entrar" />
+        <Button
+          data-testid="submit"
+          className={Styles.submit}
+          type="submit"
+          text="Entrar"
+        />
         <span className={Styles.link}>Criar conta</span>
         <FormStatus />
       </form>
