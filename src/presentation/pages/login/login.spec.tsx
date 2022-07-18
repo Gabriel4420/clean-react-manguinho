@@ -1,4 +1,4 @@
-import { Login } from '@/presentation/pages'
+import { LoginForm } from '@/presentation/components'
 import { ValidationStub } from '@/presentation/test'
 import {
   render,
@@ -17,7 +17,7 @@ type SutTypes = {
 const makeSut = (): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = faker.random.words()
-  const sut = render(<Login validation={validationStub} />)
+  const sut = render(<LoginForm validation={validationStub} />)
 
   return {
     sut,
@@ -25,7 +25,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe('Login Component', () => {
+describe('LoginForm Component', () => {
   afterEach(cleanup)
 
   test('Should start with initial state ', () => {
@@ -112,5 +112,26 @@ describe('Login Component', () => {
     expect(emailStatus.title).toBe('Right')
 
     expect(emailStatus.textContent).toBe('🟢')
+  })
+
+  test('Should enable submit button if form is valid ', () => {
+    const { sut, validationStub } = makeSut()
+
+    validationStub.errorMessage = null
+
+    const emailInput = sut.getByTestId('email')
+
+    fireEvent.input(emailInput, {
+      target: { value: faker.internet.email() },
+    })
+
+    const passwordInput = sut.getByTestId('password')
+
+    fireEvent.input(passwordInput, {
+      target: { value: faker.internet.password() },
+    })
+
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    expect(submitButton.disabled).toBe(false)
   })
 })
