@@ -6,13 +6,14 @@ type Props = {
   type: 'submit' | 'button' | 'reset'
   text: string
   'data-testid'?: string
+  disabled:boolean
 }
 
 const Button: React.FC<Props> = (props: Props) => {
   return (
     <button
       data-testid={props['data-testid']}
-      disabled
+      disabled={props.disabled}
       className={props.className}
       type={props.type}
     >

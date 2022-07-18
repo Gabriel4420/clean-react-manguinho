@@ -5,7 +5,7 @@ import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'
 
 type Props = {
-  validation: Validation
+  validation?: Validation
 }
 
 const LoginForm: React.FC<Props> = ({ validation }: Props) => {
@@ -29,8 +29,6 @@ const LoginForm: React.FC<Props> = ({ validation }: Props) => {
     })
   }, [state.email, state.password])
 
-
-
   return (
     <FormContext.Provider value={{ state, setState }}>
       <form className={Styles.form} action="">
@@ -45,6 +43,7 @@ const LoginForm: React.FC<Props> = ({ validation }: Props) => {
           className={Styles.submit}
           type="submit"
           text="Entrar"
+          disabled={!!state.emailError || !!state.passwordError}
         />
         <span className={Styles.link}>Criar conta</span>
         <FormStatus />
