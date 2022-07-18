@@ -1,3 +1,6 @@
+import { AccountModel } from '@/domain/models'
+import { mockAccountModel } from '@/domain/test'
+import { Authentication, AuthenticationParams } from '@/domain/usecases'
 import { LoginForm } from '@/presentation/components'
 import { ValidationStub } from '@/presentation/test'
 import {
@@ -9,9 +12,18 @@ import {
 import faker from 'faker'
 import React from 'react'
 
+class AuthenticationSpy implements Authentication {
+  account = mockAccountModel()
+  params: AuthenticationParams
+  auth(params: AuthenticationParams): Promise<AccountModel> {
+    this.params = params
+    return Promise.resolve(this.account)
+  }
+}
+
 type SutTypes = {
   sut: RenderResult
-  validationStub: ValidationStub
+  authenticationSpy: AuthenticationSpy
 }
 
 type SutParams = {
@@ -20,12 +32,13 @@ type SutParams = {
 
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
+  const authenticationSpy = new AuthenticationSpy()
   validationStub.errorMessage = params?.validationError
-  const sut = render(<LoginForm validation={validationStub} />)
+  const sut = render(<LoginForm validation={validationStub} authentication={authenticationSpy} />)
 
   return {
     sut,
-    validationStub,
+    authenticationSpy,
   }
 }
 
@@ -154,5 +167,28 @@ describe('LoginForm Component', () => {
 
     const spinner = sut.queryByTestId('spinner')
     expect(spinner).toBeTruthy()
+  })
+
+  test('Should call Authentication with correct values', () => {
+    const { sut, authenticationSpy } = makeSut()
+
+    const emailInput = sut.getByTestId('email')
+
+    const email = faker.internet.email()
+
+    fireEvent.input(emailInput, {
+      target: { value: email },
+    })
+
+    const passwordInput = sut.getByTestId('password')
+    const password = faker.internet.password()
+    fireEvent.input(passwordInput, {
+      target: { value: password },
+    })
+
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    fireEvent.click(submitButton)
+
+    expect(authenticationSpy.params).toEqual({ email, password })
   })
 })
