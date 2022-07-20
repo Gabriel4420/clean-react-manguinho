@@ -10,6 +10,7 @@ import {
 } from '@testing-library/react'
 import faker from 'faker'
 import React from 'react'
+import 'jest-localstorage-mock'
 
 type SutTypes = {
   sut: RenderResult
@@ -97,19 +98,25 @@ const simulateStatusForField = (
 describe('LoginForm Component', () => {
   afterEach(cleanup)
 
+  beforeEach(() => localStorage.clear())
+
   test('Should start with initial state ', () => {
     //
 
     const validationError = faker.random.words()
+
     const { sut } = makeSut({ validationError })
 
     const errorWrap = sut.getByTestId('error-wrap')
+
     expect(errorWrap.childElementCount).toBe(0)
 
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+
     expect(submitButton.disabled).toBe(true)
 
     simulateStatusForField(sut, 'email', validationError)
+
     simulateStatusForField(sut, 'password', validationError)
 
     //
@@ -222,10 +229,13 @@ describe('LoginForm Component', () => {
   test('Should not call Authentication if form is invalid', () => {
     //
     const validationError = faker.random.words()
+
     const { sut, authenticationSpy } = makeSut({ validationError })
 
     populateEmailField(sut)
+
     fireEvent.submit(sut.getByTestId('form'))
+
     expect(authenticationSpy.callsCount).toBe(0)
 
     //
@@ -243,13 +253,59 @@ describe('LoginForm Component', () => {
       .mockReturnValueOnce(Promise.reject(error))
 
     simulateValidSubmit(sut)
+
     const errorWrap = sut.getByTestId('error-wrap')
+
     await waitFor(() => errorWrap)
+
     const mainError = sut.getByTestId('main-error')
 
     expect(mainError.textContent).toBe(error.message)
 
     expect(errorWrap.childElementCount).toBe(1)
+
+    //
+  })
+
+  test('Should present error if Authentication fails', async () => {
+    //
+
+    const { sut, authenticationSpy } = makeSut()
+
+    const error = new InvalidCredentialsError()
+
+    jest
+      .spyOn(authenticationSpy, 'auth')
+      .mockReturnValueOnce(Promise.reject(error))
+
+    simulateValidSubmit(sut)
+
+    const errorWrap = sut.getByTestId('error-wrap')
+
+    await waitFor(() => errorWrap)
+
+    const mainError = sut.getByTestId('main-error')
+
+    expect(mainError.textContent).toBe(error.message)
+
+    expect(errorWrap.childElementCount).toBe(1)
+
+    //
+  })
+
+  test('Should add accessToken to localstorage on success', async () => {
+    //
+
+    const { sut, authenticationSpy } = makeSut()
+
+    simulateValidSubmit(sut)
+
+    await waitFor(() => sut.getByTestId('form'))
+
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      'accessToken',
+      authenticationSpy.account.accessToken,
+    )
 
     //
   })
