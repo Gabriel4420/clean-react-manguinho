@@ -8,6 +8,8 @@ import {
   cleanup,
   waitFor,
 } from '@testing-library/react'
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
 import faker from 'faker'
 import React from 'react'
 import 'jest-localstorage-mock'
@@ -21,17 +23,27 @@ type SutParams = {
   validationError: string
 }
 
+const history = createMemoryHistory()
+
 const makeSut = (params?: SutParams): SutTypes => {
   //
 
   const validationStub = new ValidationStub()
+
   const authenticationSpy = new AuthenticationSpy()
+
   validationStub.errorMessage = params?.validationError
+
   const sut = render(
-    <LoginForm
-      validation={validationStub}
-      authentication={authenticationSpy}
-    />,
+    //
+    <Router history={history}>
+      <LoginForm
+        validation={validationStub}
+        authentication={authenticationSpy}
+      />
+    </Router>,
+
+    //
   )
 
   return {
@@ -44,7 +56,9 @@ const makeSut = (params?: SutParams): SutTypes => {
 
 const simulateValidSubmit = (
   sut: RenderResult,
+
   email = faker.internet.email(),
+
   password = faker.internet.password(),
 ): void => {
   //
@@ -54,22 +68,29 @@ const simulateValidSubmit = (
   populatePasswordField(sut, password)
 
   const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+
   fireEvent.click(submitButton)
 }
 
 const populateEmailField = (
   sut: RenderResult,
+
   email = faker.internet.email(),
 ): void => {
+  //
+
   const emailInput = sut.getByTestId('email')
 
   fireEvent.input(emailInput, {
     target: { value: email },
   })
+
+  //
 }
 
 const populatePasswordField = (
   sut: RenderResult,
+
   password = faker.internet.password(),
 ): void => {
   const passwordInput = sut.getByTestId('password')
@@ -126,7 +147,9 @@ describe('LoginForm Component', () => {
     //
 
     const validationError = faker.random.words()
+
     const { sut } = makeSut({ validationError })
+
     populateEmailField(sut)
 
     //
@@ -306,6 +329,22 @@ describe('LoginForm Component', () => {
       'accessToken',
       authenticationSpy.account.accessToken,
     )
+
+    //
+  })
+
+  test('Should go to signUp page', () => {
+    //
+
+    const { sut } = makeSut()
+
+    const register = sut.getByTestId('signup')
+
+    fireEvent.click(register)
+
+    expect(history.length).toBe(2)
+
+    expect(history.location.pathname).toBe('/signup')
 
     //
   })
