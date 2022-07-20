@@ -4,16 +4,18 @@ import React, { useContext } from 'react'
 import { FormContext } from '@/presentation/contexts'
 
 const FormStatus: React.FC = () => {
-  const {state} = useContext(FormContext)
-  
-  const { isLoading, errorMessage } = state
+  const { state } = useContext(FormContext)
+
+  const { isLoading, mainError } = state
 
   return (
     <div data-testid="error-wrap" className={Styles.errorWrap}>
-      {isLoading && (
-        <Spinner className={Styles.spinner} />
+      {isLoading && <Spinner className={Styles.spinner} />}
+      {mainError && (
+        <span data-testid="main-error" className={Styles.error}>
+          {mainError}
+        </span>
       )}
-      {errorMessage && <span className={Styles.error}>{errorMessage}</span>}
     </div>
   )
 }
