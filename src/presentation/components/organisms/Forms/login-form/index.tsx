@@ -4,6 +4,7 @@ import { FormContext } from '@/presentation/contexts'
 import { Authentication } from '@/domain/usecases'
 import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {
   validation?: Validation
@@ -83,7 +84,9 @@ const LoginForm: React.FC<Props> = ({ validation, authentication }: Props) => {
           disabled={!!state.emailError || !!state.passwordError}
         />
 
-        <span className={Styles.link}>Criar conta</span>
+        <Link to="/signup" data-testid="signup" className={Styles.link}>
+          Criar conta
+        </Link>
 
         <FormStatus />
       </form>
