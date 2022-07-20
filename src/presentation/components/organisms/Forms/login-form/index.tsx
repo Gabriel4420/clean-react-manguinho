@@ -1,9 +1,9 @@
 import { FormStatus, Input, Button, Heading } from '@/presentation/components'
 import { Validation } from '@/presentation/protocols'
 import { FormContext } from '@/presentation/contexts'
+import { Authentication } from '@/domain/usecases'
 import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'
-import { Authentication } from '@/domain/usecases'
 
 type Props = {
   validation?: Validation
@@ -24,28 +24,45 @@ const LoginForm: React.FC<Props> = ({ validation, authentication }: Props) => {
   })
 
   useEffect(() => {
+    //
+
     setState({
       ...state,
       emailError: validation.validate('email', state.email),
       passwordError: validation.validate('password', state.password),
     })
+
+    //
   }, [state.email, state.password])
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     try {
+      //
+
       event.preventDefault()
+
       if (state.isLoading || state.emailError || state.passwordError) {
         return
       }
+
       setState({ ...state, isLoading: true })
-      await authentication.auth({
+
+      const account = await authentication.auth({
         email: state.email,
         password: state.password,
       })
+
+      localStorage.setItem('accessToken', account.accessToken)
+
+      //
     } catch (error) {
+      //
+
       setState({ ...state, isLoading: false, mainError: error.message })
+
+      //
     }
   }
 
@@ -65,7 +82,9 @@ const LoginForm: React.FC<Props> = ({ validation, authentication }: Props) => {
           text="Entrar"
           disabled={!!state.emailError || !!state.passwordError}
         />
+
         <span className={Styles.link}>Criar conta</span>
+
         <FormStatus />
       </form>
     </FormContext.Provider>

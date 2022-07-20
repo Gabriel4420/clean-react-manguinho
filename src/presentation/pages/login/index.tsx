@@ -1,4 +1,3 @@
-import { Authentication } from '@/domain/usecases'
 import { Header, Footer, LoginForm } from '@/presentation/components'
 
 import React from 'react'
