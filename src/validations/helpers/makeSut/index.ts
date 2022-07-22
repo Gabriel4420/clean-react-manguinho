@@ -1,5 +1,11 @@
-import { RequiredFieldValidation } from '@/validations/validators/requiredFields'
+import { RequiredFieldValidation } from '@/validations/validators'
+import { EmailValidation } from '@/validations/validators'
 import faker from 'faker'
 
-export const makeSut = (): RequiredFieldValidation =>
-  new RequiredFieldValidation(faker.database.column())
+export class MakeSUT {
+  makeSutRequiredFields = (): RequiredFieldValidation =>
+    new RequiredFieldValidation(faker.database.column())
+
+  makeSutEmailValidation = (): EmailValidation =>
+    new EmailValidation(faker.database.column())
+}

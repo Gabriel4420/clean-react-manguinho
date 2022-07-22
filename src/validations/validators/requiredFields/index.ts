@@ -1,1 +1,1 @@
-export * from './prod'
+export { default as RequiredFieldValidation } from './prod'

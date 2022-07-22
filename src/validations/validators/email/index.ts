@@ -1,1 +1,1 @@
-export * from './prod/email-validation'
+export { default as EmailValidation } from './prod'
