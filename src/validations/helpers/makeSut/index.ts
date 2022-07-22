@@ -1,11 +1,21 @@
 import {
+  FieldValidationSpy,
   MinLengthValidation,
   RequiredFieldValidation,
-} from '@/validations/validators'
-import { EmailValidation } from '@/validations/validators'
+  EmailValidation,
+  ValidationComposite,
+} from '@/validations'
+
 import faker from 'faker'
 
+export type SutTypes = {
+  sut: ValidationComposite
+  fieldValidationsSpy: FieldValidationSpy[]
+}
+
 export class MakeSUT {
+  //
+
   makeSutRequiredFields = (): RequiredFieldValidation =>
     new RequiredFieldValidation(faker.database.column())
 
@@ -14,4 +24,22 @@ export class MakeSUT {
 
   makeSutMinLengthValidation = (): MinLengthValidation =>
     new MinLengthValidation(faker.database.column(), 5)
+
+  makeSutComposite = (): SutTypes => {
+    //
+
+    const fieldValidationsSpy = [
+      new FieldValidationSpy('any_field'),
+      new FieldValidationSpy('any_field'),
+    ]
+
+    const sut = new ValidationComposite(fieldValidationsSpy)
+
+    return {
+      sut,
+      fieldValidationsSpy,
+    }
+
+    //
+  }
 }
