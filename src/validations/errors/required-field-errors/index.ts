@@ -1,4 +1,4 @@
-export class RequiredFieldError extends Error {
+export default class RequiredFieldError extends Error {
   constructor() {
     super('Campo obrigatório')
     this.name = 'Campo obrigatório'
