@@ -1,6 +1,6 @@
 import { makeSut } from '@/infra'
 
-import { mockPostRequest } from '@/data/test'
+import { mockPostRequest } from '@/data'
 
 jest.mock('axios')
 
