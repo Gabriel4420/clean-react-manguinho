@@ -4,6 +4,10 @@ import { FieldValidation } from '@/validations'
 export default class ValidationComposite implements Validation {
   constructor(private readonly validators: FieldValidation[]) {}
 
+  static build(validators: FieldValidation[]): ValidationComposite {
+    return new ValidationComposite(validators)
+  }
+
   validate(fieldName: string, fieldValue: string): string {
     //
 

@@ -1,4 +1,5 @@
 import { MakeSUT } from '@/validations'
+
 import faker from 'faker'
 
 const msut = new MakeSUT()

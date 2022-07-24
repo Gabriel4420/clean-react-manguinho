@@ -4,6 +4,7 @@ import {
   RequiredFieldValidation,
   ValidationBuilder as sut,
 } from '@/validations'
+
 import faker from 'faker'
 
 const field = faker.database.column()
@@ -11,6 +12,8 @@ const field = faker.database.column()
 const length = faker.datatype.number()
 
 describe('ValidationBuilder', () => {
+  //
+
   test('Should return RequiredField validation ', () => {
     const validations = sut.field(field).required().build()
 

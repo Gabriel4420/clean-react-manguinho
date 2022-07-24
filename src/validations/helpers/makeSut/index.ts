@@ -33,7 +33,7 @@ export class MakeSUT {
       new FieldValidationSpy(fieldName),
     ]
 
-    const sut = new ValidationComposite(fieldValidationsSpy)
+    const sut = ValidationComposite.build(fieldValidationsSpy)
 
     return {
       sut,
