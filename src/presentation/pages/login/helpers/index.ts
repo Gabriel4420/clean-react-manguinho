@@ -7,7 +7,4 @@ export { default as testErrorWrapChildCount } from './testErrorWrapChildCount'
 export { default as testElementExists } from './testElementExists'
 export { default as testElementText } from './testElementText'
 export { default as testButtonIsDisabled } from './testButtonIsDisabled'
-
-
-
-
+export { default as InitialStateStart } from './initialStateStart'

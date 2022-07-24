@@ -1,4 +1,4 @@
-import { InvalidCredentialsError } from '@/domain/errors'
+import { InvalidCredentialsError } from '@/domain'
 
 import {
   makeSut,
@@ -10,7 +10,8 @@ import {
   testErrorWrapChildCount,
   testStatusForField,
   testButtonIsDisabled,
-} from './helpers'
+  InitialStateStart,
+} from '@/presentation'
 
 import { fireEvent, cleanup } from '@testing-library/react'
 
@@ -34,13 +35,15 @@ describe('LoginForm Component', () => {
 
     const { sut } = makeSut({ validationError })
 
-    testErrorWrapChildCount(sut, 0)
-
-    testButtonIsDisabled(sut, 'submit', true)
-
-    testStatusForField(sut, 'email', validationError)
-
-    testStatusForField(sut, 'password', validationError)
+    InitialStateStart(
+      sut,
+      'submit',
+      'email',
+      'password',
+      0,
+      validationError,
+      true,
+    )
 
     //
   })
