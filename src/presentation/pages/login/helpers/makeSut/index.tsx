@@ -1,5 +1,4 @@
-import { LoginForm } from '@/presentation/components'
-import { ValidationStub, AuthenticationSpy } from '@/presentation/test'
+import { LoginForm, ValidationStub, AuthenticationSpy } from '@/presentation'
 import { render, RenderResult } from '@testing-library/react'
 import { Router } from 'react-router-dom'
 import React from 'react'

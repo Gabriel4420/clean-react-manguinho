@@ -1,7 +1,6 @@
-import { Spinner } from '@/presentation/components'
+import { Spinner, FormContext } from '@/presentation'
 import Styles from './styles.scss'
 import React, { useContext } from 'react'
-import { FormContext } from '@/presentation/contexts'
 
 const FormStatus: React.FC = () => {
   const { state } = useContext(FormContext)

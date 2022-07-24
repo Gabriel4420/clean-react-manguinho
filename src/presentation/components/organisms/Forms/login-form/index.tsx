@@ -1,6 +1,12 @@
-import { FormStatus, Input, Button, Heading } from '@/presentation/components'
-import { Validation } from '@/presentation/protocols'
-import { FormContext } from '@/presentation/contexts'
+import {
+  FormStatus,
+  Input,
+  Button,
+  Heading,
+  Validation,
+  FormContext,
+} from '@/presentation'
+
 import { Authentication } from '@/domain/usecases'
 import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'

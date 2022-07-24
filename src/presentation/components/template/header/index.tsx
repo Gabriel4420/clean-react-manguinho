@@ -1,4 +1,4 @@
-import { Logo, Heading } from '@/presentation/components'
+import { Logo, Heading } from '@/presentation'
 import Styles from './styles.scss'
 import React, { memo } from 'react'
 

@@ -1,4 +1,4 @@
-import { Header, Footer, LoginForm } from '@/presentation/components'
+import { Header, Footer, LoginForm } from '@/presentation'
 
 import React from 'react'
 import Styles from './styles.scss'
