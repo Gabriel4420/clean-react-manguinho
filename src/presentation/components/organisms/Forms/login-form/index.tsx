@@ -12,7 +12,7 @@ import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-type Props = {
+export type Props = {
   validation?: Validation
   authentication?: Authentication
 }

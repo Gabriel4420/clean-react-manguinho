@@ -2,7 +2,9 @@ import { LoginForm, ValidationStub, AuthenticationSpy } from '@/presentation'
 import { render, RenderResult } from '@testing-library/react'
 import { Router } from 'react-router-dom'
 import React from 'react'
-import { history } from '../../login.spec'
+import { createMemoryHistory } from 'history'
+
+const history = createMemoryHistory({ initialEntries: ['/login'] })
 
 type SutTypes = {
   sut: RenderResult

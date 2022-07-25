@@ -46,7 +46,7 @@ module.exports = {
     devMiddleware: {
       writeToDisk: true,
     },
-    static:{
+    static: {
       directory: './public',
     },
     historyApiFallback: true,
@@ -55,5 +55,6 @@ module.exports = {
     react: 'React',
     'react-dom': 'ReactDOM',
   },
+
   plugins: [new CleanWebpackPlugin()],
 }

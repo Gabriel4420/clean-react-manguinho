@@ -1,13 +1,19 @@
-import { Header, Footer, LoginForm } from '@/presentation'
+import { Header, Footer, LoginForm, Validation } from '@/presentation'
+import { Authentication } from '@/domain'
 
 import React from 'react'
 import Styles from './styles.scss'
 
-const Login: React.FC = () => {
+export type Props = {
+  validation?: Validation
+  authentication?: Authentication
+}
+
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   return (
     <div className={Styles.login}>
       <Header />
-      <LoginForm />
+      <LoginForm authentication={authentication} validation={validation} />
       <Footer />
     </div>
   )

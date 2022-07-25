@@ -1,5 +1,4 @@
 import { InvalidCredentialsError } from '@/domain'
-
 import {
   makeSut,
   populatePasswordField,
@@ -15,15 +14,13 @@ import {
 
 import { fireEvent, cleanup } from '@testing-library/react'
 
-import { createMemoryHistory } from 'history'
-
 import faker from 'faker'
 
-import 'jest-localstorage-mock'
+import { createMemoryHistory } from 'history'
 
-export const history = createMemoryHistory({ initialEntries: ['/login'] })
+const history = createMemoryHistory({ initialEntries: ['/login'] })
 
-describe('LoginForm Component', () => {
+describe('LoginForm', () => {
   afterEach(cleanup)
 
   beforeEach(() => localStorage.clear())

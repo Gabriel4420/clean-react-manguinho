@@ -5,6 +5,9 @@
         }
     },
     "extends":["standard-with-typescript", "plugin:react/recommended"],
+    "env": {
+        "jest/globals": true
+    },
     "plugins": ["react"],
     "parseOptions":{
         "project":"./tsconfig.json"
@@ -15,4 +18,5 @@
         "react/jsx-uses-react":"error",
         "react/jsx-uses-vars":"error"  
     }
+    
 }
