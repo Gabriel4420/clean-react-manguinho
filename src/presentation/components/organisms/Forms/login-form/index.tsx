@@ -80,7 +80,7 @@ const LoginForm: React.FC<Props> = ({ validation, authentication }: Props) => {
   return (
     <FormContext.Provider value={{ state, setState }}>
       <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
-        <Heading type="h2" title="Login" />
+        <Heading  type="h2" title="Login" />
 
         <Input type="email" name="email" placeholder="Digite seu email" />
 
