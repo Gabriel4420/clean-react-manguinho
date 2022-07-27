@@ -1,5 +1,5 @@
 import {
-  LoginForm,
+  Login,
   HistoryContext,
   ValidationStub,
   AuthenticationSpy,
@@ -32,10 +32,7 @@ const makeSut = (params?: SutParams): SutTypes => {
   const sut = render(
     //
     <Router history={HistoryContext}>
-      <LoginForm
-        validation={validationStub}
-        authentication={authenticationSpy}
-      />
+      <Login validation={validationStub} authentication={authenticationSpy} />
     </Router>,
 
     //

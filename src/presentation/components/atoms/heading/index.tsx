@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Heading: React.FC<Props> = (props: Props) => {
-  switch (props.type) {
+  switch (props?.type) {
     case 'h1':
       return <h1 className={props.className}>{props.title}</h1>
     case 'h2':
