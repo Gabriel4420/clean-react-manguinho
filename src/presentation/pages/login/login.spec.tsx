@@ -1,4 +1,5 @@
 import { InvalidCredentialsError } from '@/domain'
+
 import {
   makeSut,
   populatePasswordField,
@@ -10,15 +11,14 @@ import {
   testStatusForField,
   testButtonIsDisabled,
   InitialStateStart,
+  HistoryContext,
 } from '@/presentation'
+
+import 'jest-localstorage-mock'
 
 import { fireEvent, cleanup } from '@testing-library/react'
 
 import faker from 'faker'
-
-import { createMemoryHistory } from 'history'
-
-const history = createMemoryHistory({ initialEntries: ['/login'] })
 
 describe('LoginForm', () => {
   afterEach(cleanup)
@@ -192,9 +192,9 @@ describe('LoginForm', () => {
       authenticationSpy.account.accessToken,
     )
 
-    expect(history.length).toBe(1)
+    expect(HistoryContext.length).toBe(1)
 
-    expect(history.location.pathname).toBe('/')
+    expect(HistoryContext.location.pathname).toBe('/')
 
     //
   })
@@ -208,9 +208,9 @@ describe('LoginForm', () => {
 
     fireEvent.click(register)
 
-    expect(history.length).toBe(2)
+    expect(HistoryContext.length).toBe(2)
 
-    expect(history.location.pathname).toBe('/signup')
+    expect(HistoryContext.location.pathname).toBe('/signup')
 
     //
   })

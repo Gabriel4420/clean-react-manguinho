@@ -7,7 +7,7 @@ import {
   FormContext,
 } from '@/presentation'
 
-import { Authentication } from '@/domain/usecases'
+import { Authentication } from '@/domain'
 import Styles from './styles.scss'
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'

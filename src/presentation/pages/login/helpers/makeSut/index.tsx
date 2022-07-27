@@ -1,10 +1,15 @@
-import { LoginForm, ValidationStub, AuthenticationSpy } from '@/presentation'
-import { render, RenderResult } from '@testing-library/react'
-import { Router } from 'react-router-dom'
-import React from 'react'
-import { createMemoryHistory } from 'history'
+import {
+  LoginForm,
+  HistoryContext,
+  ValidationStub,
+  AuthenticationSpy,
+} from '@/presentation'
 
-const history = createMemoryHistory({ initialEntries: ['/login'] })
+import { render, RenderResult } from '@testing-library/react'
+
+import { Router } from 'react-router-dom'
+
+import React from 'react'
 
 type SutTypes = {
   sut: RenderResult
@@ -26,7 +31,7 @@ const makeSut = (params?: SutParams): SutTypes => {
 
   const sut = render(
     //
-    <Router history={history}>
+    <Router history={HistoryContext}>
       <LoginForm
         validation={validationStub}
         authentication={authenticationSpy}
