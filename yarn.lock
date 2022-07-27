@@ -4921,7 +4921,7 @@ joi@^17.4.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-js-base64@^2.1.8:
+js-base64@^2.1.8, js-base64@^2.4.9:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.6.4.tgz#f4e686c5de1ea1f867dbcad3d46d969428df98c4"
   integrity sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==
@@ -6583,6 +6583,14 @@ scss-tokenizer@^0.2.3:
   dependencies:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
+
+scss-tokenizer@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.4.2.tgz#1cc1cca2f2acc4643907e950dbe59d6e1cd2615e"
+  integrity sha512-+0We4djEJnZYxBas35tiZWqTHX/c5OZnNE3w+xQinC8agATTRgBWZoIWSmUo4Axm70//AooS63zQXsLhQuCH0A==
+  dependencies:
+    js-base64 "^2.4.9"
+    source-map "^0.7.3"
 
 select-hose@^2.0.0:
   version "2.0.0"
